@@ -27,6 +27,15 @@ class Contact extends Component {
         this.handleBlur = this.handleBlur.bind(this);
     }
 
+
+
+
+
+
+
+
+
+    
     handleInputChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -44,7 +53,7 @@ class Contact extends Component {
 
     handleBlur = (field) => (evnt) => {
         this.setState({
-            touched: { ...this.state.touched, [field]:true}
+            touched: { ...this.state.touched, [field]: true }
         });
     }
 
@@ -56,35 +65,34 @@ class Contact extends Component {
             email: '',
         }
 
-        if(this.state.touched.firstname && firstname.length < 3){
-            errors.firstname =  'First Name should be >= 3 characters';
-        }else if (this.state.touched.firstname && firstname.length > 10){
-            errors.firstname =  'First Name should be <= 10 characters';
+        if (this.state.touched.firstname && firstname.length < 3) {
+            errors.firstname = 'First Name should be >= 3 characters';
+        } else if (this.state.touched.firstname && firstname.length > 10) {
+            errors.firstname = 'First Name should be <= 10 characters';
         }
 
-        if(this.state.touched.lastname && lastname.length < 3){
-            errors.lastname =  'Last Name should be >= 3 characters';
-        }else if (this.state.touched.lastname && lastname.length > 10){
-            errors.lastname =  'Last Name should be <= 10 characters';
+        if (this.state.touched.lastname && lastname.length < 3) {
+            errors.lastname = 'Last Name should be >= 3 characters';
+        } else if (this.state.touched.lastname && lastname.length > 10) {
+            errors.lastname = 'Last Name should be <= 10 characters';
         }
 
-      const  reg = /^\d+$/;  
-      if(this.state.touched.telnum && !reg.test(telnum)  )
-         errors.telnum = 'Tel. number should contain only the numbers'
+        const reg = /^\d+$/;
+        if (this.state.touched.telnum && !reg.test(telnum))
+            errors.telnum = 'Tel. number should contain only the numbers'
 
-     if(this.state.touched.email && email.split('').filter(x => x === '@').length !== 1)
-     errors.email = 'Email should contain a @';
-    
+        if (this.state.touched.email && email.split('').filter(x => x === '@').length !== 1)
+            errors.email = 'Email should contain a @';
 
 
-     return errors;
+        return errors;
 
     }
 
 
     render() {
 
-  const errors = this.validate(this.state.firstname,this.state.lastname,this.state.telnum, this.state.email);
+        const errors = this.validate(this.state.firstname, this.state.lastname, this.state.telnum, this.state.email);
 
 
 
@@ -139,7 +147,7 @@ class Contact extends Component {
                                     <Input type="text" id="firstname" name="firstname"
                                         placeholder="First Name" value={this.state.firstname}
                                         valid={errors.firstname === ''}
-                                        invalid={ errors.firstname !== ''}
+                                        invalid={errors.firstname !== ''}
                                         onBlur={this.handleBlur('firstname')}
                                         onChange={this.handleInputChange}
                                     />
